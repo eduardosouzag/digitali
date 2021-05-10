@@ -32,6 +32,7 @@ public class LoginController {
             User user = customerUserDetailsService.getUser(authRequest.getUserName());
             return ResponseEntity.ok(user);
         } catch (Exception e) {
+            e.printStackTrace();
         }
         
         return null;
