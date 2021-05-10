@@ -1,0 +1,187 @@
+<h1>Cadastro do Aluno</h1>
+<form [formGroup]="formAluno" (ngSubmit)="onSubmit()">
+<mat-tab-group animationDuration="0ms">
+  <mat-tab label="Dados Pessoais">
+    <div class="div-padding">
+      <div formGroupName="dadosPessoais">
+        <app-divider titulo="Dados Pessoais"></app-divider>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start none" fxLayoutGap="10px">
+            <mat-form-field fxFlex="33">
+              <mat-label>CPF</mat-label>
+              <input matInput #message formControlName="cpf" maxlength="11" placeholder="Informe os números do CPF">
+              <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="67">
+              <mat-label>Nome</mat-label>
+              <input matInput #message formControlName="nome" maxlength="11" type="number" placeholder="Informe os números do CPF" required>
+              <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
+            </mat-form-field>
+        </div>
+
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start none" fxLayoutGap="10px">
+        <mat-form-field fxFlex="33">
+          <mat-label>Data de Nascimento</mat-label>
+          <input matInput [matDatepicker]="dp3" formControlName="dataNascimento">
+          <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+          <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+        </mat-form-field>
+
+        <div fxFlex="50" fxLayoutAlign="start none">
+          <mat-form-field fxFlex="50">
+            <mat-label>Celular</mat-label>
+            <input matInput #message formControlName="celular" maxlength="11" type="number" placeholder="Informe os números do CPF">
+            <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
+          </mat-form-field>
+          <mat-slide-toggle color="primary">Whatsapp?</mat-slide-toggle>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start none">
+        <mat-form-field fxFlex="33">
+          <mat-label>Email</mat-label>
+          <input matInput #message formControlName="email" type="text" placeholder="Informe os números do CPF" required>
+          <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
+        </mat-form-field>
+      </div>
+
+    </div>
+    <app-divider titulo="Endereço"></app-divider>
+
+    <div formGroupName="endereco">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start none" fxLayoutGap="10px">
+        <mat-form-field fxFlex="33">
+          <mat-label>CEP</mat-label>
+          <input matInput #message formControlName="cep" type="text" placeholder="Informe os números do CEP" (blur)="consultaCep()" required>
+          <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="67">
+          <mat-label>Logradouro</mat-label>
+          <input matInput #message formControlName="logradouro" type="text" placeholder="Informe os números do CEP" required>
+          <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start none" fxLayoutGap="10px">
+        <mat-form-field fxFlex="33">
+          <mat-label>Complemento</mat-label>
+          <input matInput #message formControlName="complemento" type="text" placeholder="Informe os números do CEP" required>
+          <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start none" fxLayoutGap="10px">
+        <mat-form-field fxFlex="33">
+          <mat-label>Bairro</mat-label>
+          <input matInput #message formControlName="bairro" type="text" placeholder="Informe os números do CEP" required>
+          <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="33">
+          <mat-label>Cidade</mat-label>
+          <input matInput #message formControlName="cidade" type="text" placeholder="Informe os números do CEP" required>
+          <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="33">
+          <mat-label>Estado</mat-label>
+          <input matInput #message formControlName="estado" type="text" placeholder="Informe os números do CEP" required>
+          <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start none" fxLayoutGap="10px">
+      <h1>Plano de Saúde</h1>
+      <mat-slide-toggle  [checked]="isPlanoSaude" (change)="planoSaudeChanged($event)" color="primary">Este aluno possui plano de saúde?</mat-slide-toggle>
+    </div>
+    <mat-divider></mat-divider>
+
+
+    <div formGroupName="planoSaude" [hidden]="isPlanoSaude" fxLayoutGap="10px" >
+      <mat-form-field fxFlex="33">
+        <mat-label>Empresa</mat-label>
+        <input matInput #message formControlName="empresaPlanoSaude" type="text" placeholder="Informe os números do CEP" required>
+        <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="33">
+        <mat-label>Número da Carteira</mat-label>
+        <input matInput #message formControlName="numeroCarteira" type="text" placeholder="Informe os números do CEP" required>
+        <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+</mat-tab>
+
+  <mat-tab label="Cardápio">
+    <div class="div-padding">
+      <div formGroupName="cardapio">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start none" fxLayoutGap="10px">
+          <mat-form-field fxFlex="33">
+            <mat-label>Turma</mat-label>
+            <mat-select>
+              <mat-option value="Turma A">Option 1</mat-option>
+              <mat-option value="Turma B" disabled>Option 2 (disabled)</mat-option>
+              <mat-option value="Turma C">Option 3</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="column" fxLayout.xs="column" fxLayoutAlign="start none" fxLayoutGap="10px">
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image">
+                <div class="example-button-container">
+                  <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <mat-card-title>Refeição Manhã</mat-card-title>
+              <mat-card-subtitle>Primeira refeição matinal, desjejum</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>
+                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                bred for hunting.
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button>LIKE</button>
+              <button mat-button>SHARE</button>
+            </mat-card-actions>
+          </mat-card>
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>Lanche</mat-card-title>
+              <mat-card-subtitle>Primeira refeição matinal, desjejum</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>
+                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                bred for hunting.
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button>LIKE</button>
+              <button mat-button>SHARE</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+
+  </mat-tab>
+  <mat-tab label="Responsável">Content 3</mat-tab>
+  <mat-tab label="Documentos">Content 4</mat-tab>
+</mat-tab-group>
+
+<div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <button class="button-submit-region" mat-raised-button color="primary">Salvar</button>
+    <button class="button-submit-region" mat-raised-button>Cancelar</button>
+  </div>
+</form>

@@ -1,0 +1,23 @@
+<form [formGroup]="formLogin" (ngSubmit)="logon()">
+<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10px">
+  <mat-card>
+    <mat-card-content>
+      <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <mat-form-field>
+          <mat-label>Login</mat-label>
+          <input matInput #message formControlName="login" type="text" required>
+          <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Senha</mat-label>
+          <input matInput #message formControlName="senha" type="password" required>
+          <mat-hint align="end">{{message.value.length}} / 11</mat-hint>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">Entrar</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+</form>
